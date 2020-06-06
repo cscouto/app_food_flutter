@@ -44,13 +44,22 @@ class MealDetailScreen extends StatelessWidget {
                 final _ingredient = _meal.ingredients[index];
                 return Card(
                   color: Theme.of(context).accentColor,
-                  child: Padding(child: Text(_ingredient), padding: EdgeInsets.all(15),),
+                  child: Padding(
+                    child: Text(_ingredient),
+                    padding: EdgeInsets.all(15),
+                  ),
                 );
               },
               itemCount: _meal.ingredients.length,
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop(_meal);
+        },
+        child: Icon(Icons.delete),
       ),
     );
   }

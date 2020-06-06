@@ -5,11 +5,23 @@ import 'package:food_app/meal_detail_screen.dart';
 class MealItem extends StatelessWidget {
   final Key key;
   final Meal meal;
+  final Function callback;
 
-  const MealItem({this.key, this.meal}) : super(key: key);
+  const MealItem({this.key, this.meal, this.callback}) : super(key: key);
 
   void _selectMeal(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName, arguments: meal);
+    Navigator.of(ctx)
+        .pushNamed(
+          MealDetailScreen.routeName,
+          arguments: meal,
+        )
+        .then(
+          (value) => {
+            if (value != null) {
+              callback(value)
+            }
+          },
+        );
   }
 
   String get _complexityText {
