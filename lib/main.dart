@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/category_meals_screen.dart';
-
+import './category_meals_screen.dart';
+import './meal_detail_screen.dart';
 import './categories_screen.dart';
 
 void main() => runApp(MyApp());
@@ -19,13 +19,17 @@ class MyApp extends StatelessWidget {
               subtitle1: TextStyle(
                 fontFamily: 'RobotoCondensed',
                 fontSize: 20,
-                fontWeight:  FontWeight.bold,
+                fontWeight: FontWeight.bold,
               ),
             ),
       ),
       home: CategoriesScreen(),
       routes: {
-        CategoryMealScreen.routeName: (ctx) => CategoryMealScreen()
+        CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
     );
   }
